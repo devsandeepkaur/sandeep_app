@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -5,8 +6,8 @@ import 'package:sandeep_app/models/catalog.dart';
 import 'package:sandeep_app/utils/home-widgets/catalog-header.dart';
 import 'package:sandeep_app/utils/home-widgets/catalog-list.dart';
 import 'package:sandeep_app/utils/home-widgets/widgets/theme.dart';
+import 'package:sandeep_app/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -41,6 +42,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: MyTheme.CreamColor,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+          backgroundColor: MyTheme.darkBluishColor,
+          child: Icon(CupertinoIcons.cart),
+        ),
         body: SafeArea(
           child: Container(
             padding: Vx.m32,
@@ -53,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                   CatalogList().py16().expand()
                 else
                   Center(
-                    child: CircularProgressIndicator().centered().py16().expand(),
+                    child:
+                        CircularProgressIndicator().centered().py16().expand(),
                   )
               ],
             ),
@@ -61,4 +68,3 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
-
