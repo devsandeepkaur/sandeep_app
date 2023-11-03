@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sandeep_app/utils/home-widgets/widgets/theme.dart';
+import 'package:sandeep_app/utils/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 

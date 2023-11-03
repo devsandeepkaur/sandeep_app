@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:sandeep_app/models/catalog.dart';
 import 'package:sandeep_app/pages/home_detail_page.dart';
 import 'package:sandeep_app/utils/home-widgets/catalog_image.dart';
-import 'package:sandeep_app/utils/home-widgets/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-
-
-
+import '../widgets/theme.dart';
 
 class CatalogList extends StatelessWidget {
-  CatalogList();
+  const CatalogList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +18,14 @@ class CatalogList extends StatelessWidget {
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items![index];
         return InkWell(
-          onTap:() => Navigator.push(
-            context, MaterialPageRoute(
-              builder: (context)=> HomeDetailPage(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeDetailPage(
                 catalog: catalog,
-                ),
-                ),
-                ),
-            
-        
+              ),
+            ),
+          ),
           child: CatalogItem(
             catalog: catalog,
           ),
@@ -60,7 +56,7 @@ class CatalogItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                catalog.name.text.lg.color(MyTheme.darkBluishColor).make(),
+                catalog.name.text.lg.color(context.theme.secondaryHeaderColor).bold.make(),
                 catalog.desc.text.textStyle(context.captionStyle).make(),
                 10.heightBox,
                 ButtonBar(
@@ -70,13 +66,6 @@ class CatalogItem extends StatelessWidget {
                     "\$${catalog.price}".text.bold.xl.make(),
                     ElevatedButton(
                       onPressed: () {},
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            MyTheme.darkBluishColor,
-                          ),
-                          shape: MaterialStateProperty.all(
-                            StadiumBorder(),
-                          )),
                       child: "Add to cart".text.make(),
                     )
                   ],
@@ -86,6 +75,8 @@ class CatalogItem extends StatelessWidget {
           )
         ],
       ),
-    ).white.rounded.square(150).make().py16();
+    ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
+
+ 
